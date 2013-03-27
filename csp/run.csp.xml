@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<CSP name="run.csp" application="/csp/runcmd/" default="1"><![CDATA[
+<server>
+set title="Работа с командной строкой"
+set cmd =%request.Get("teCommand")
+set global="^Log"
+set sc=$$$OK
+if cmd'="" s sc=##class(Server.Manage).RunCmd(cmd,global)
+</server>
+<!DOCTYPE html>
+<html>
+<head>
+  <CSP:INCLUDE PAGE="bootstrapheader.csp">
+  <title>#(title)#</title>
+</head>
+
+<body>
+	<CSP:INCLUDE PAGE="bootstrapnavbar.csp">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+	       <CSP:INCLUDE PAGE='bootstrapsidebar.csp?active=run'>
+		</div><!--/span-->
+        <div class="span9">
+		
+		<h1>#(title)#</h1>
+		<form class="form-inline" >		
+		<input name ="teCommand" id="teCommand" type="text" 
+		class="span3" placeholder="Введите скрипт командной строки">
+		<a type="submit" class="btn" href='run.csp'>Go</a>
+		</form>
+		
+		<pre>
+<server>
+if '$$$ISERR(sc) {
+	w "результат команды "_cmd,!
+	zw @global
+	}
+else {
+	
+	d $System.OBJ.DisplayError(sc)
+	w !,..EscapeHTML($$$ERRORCODE(sc))
+	}
+k @global
+</server>
+		</pre>
+        </div><!--/span-->
+      </div><!--/row-->
+
+	<CSP:INCLUDE PAGE="bootstrapfooter.csp">
+
+    </div><!--/.fluid-container-->
+	<CSP:INCLUDE PAGE="bootstrapjs.csp">
+
+</body>
+
+</html>
+]]></CSP>
+</Export>

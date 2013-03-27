@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<CSP name="bootstrapsidebar.csp" application="/csp/runcmd/" default="1"><![CDATA[
+          <server>
+          	kill activeflag
+          	set activeflag(%request.Get("active"))="class='active'"
+          </server>
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Приложение</li>
+              <li #($get(activeflag("run")))#><a href="run.csp">Выполнить код командной строки</a></li>
+              <li class="nav-header">Debug</li>
+              <li #($get(activeflag("show_src")))#><a href="showsource.csp?PAGE=/csp/runcmd/run.csp">Исходный код страницы</a></li>
+            </ul>
+          </div><!--/.well -->]]></CSP>
+</Export>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<CSP name="bootstrapfooter.csp" application="/csp/runcmd/" default="1"><![CDATA[
+      <hr>
+
+      <footer>
+      <div class="container">
+        <p>Prototype by InterSystems, February 2013. Based on Caché and CSP.</p>
+      </div>
+      </footer>
+
+]]></CSP>
+</Export>
