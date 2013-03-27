@@ -4,42 +4,6 @@
 <Super>%RegisteredObject</Super>
 <TimeCreated>62878,65398.283255</TimeCreated>
 
-<Method name="CommandRun">
-<ClassMethod>1</ClassMethod>
-<FormalSpec>Command,GlobalName:%String</FormalSpec>
-<ReturnType>%Status</ReturnType>
-<Implementation><![CDATA[
-	Set Status=$$$OK
-	Try {
-	k @GlobalName
-	Set Log=##Class(%Library.File).TempFilename("log")
-	If $$$isVMS {
-	Set Status=$zf(-1,Command,Log)
-	} Else {
-	Set Status=$zf(-1,Command_" >"_Log)
-	}
-	Open Log:"RSD":5 If '$t return $$$ERROR($$$FileNotFound,Log)
-	Set Status=$$$OK
-	Set IO=$I
-	Use Log
-	Set Count=0
-	For {
-	Read Record Quit:$zeof
-	Set Count=Count+1
-	Set GlobalRef=GlobalName_"("_Count_")"
-	Set @GlobalRef=Record
-	}
-	} Catch e {
-		s sc=e.AsStatus()
-	}
-	If $d(Log)
-	Close Log
-	If $d(IO)
-	Use IO
- quit Status
-]]></Implementation>
-</Method>
-
 <Method name="SafeCmd">
 <Description>
 убираем из командной строки многие команды
@@ -76,6 +40,7 @@
 	set count=0
 
 	try {
+	// открываем устройство с выполнением командной строки и чтением ответа
 	open cmd:"QR" if '$test  $$$ThrowStatus($$$ERROR($$$GeneralError,"Не удалось выполнить команду "_cmd))
 	Set IO=$IO  // запоминаем текущее устройство
 	// вычитываем построчно результат команды пока не наступит конец файла и складываем его в глобал

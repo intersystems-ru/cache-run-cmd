@@ -4,7 +4,7 @@
 <!-- Copyright (c) 2001 InterSystems Inc. ALL RIGHTS RESERVED. -->
 <csp:class description="Views the source of a CSP page.">
 <server>
-set title="Работа с командной строкой"
+set title="Исходный код страницы"
 set action =%request.Get("teCommand")
 set global="^Log"
 if action'="" do ##class(Server.Manage).CommandRun(action,global)
