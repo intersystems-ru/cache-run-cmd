@@ -1,0 +1,11 @@
+<cspapp>/bootstrapfooter.csp
+<cspapp>/bootstrapheader.csp
+<cspapp>/bootstrapjs.csp
+<cspapp>/bootstrapnavbar.csp
+<cspapp>/bootstrapsidebar.csp
+<cspapp>/css
+<cspapp>/img
+<cspapp>/js
+<cspapp>/run.csp
+<cspapp>/showsource.csp
+Server.Manage.CLS
