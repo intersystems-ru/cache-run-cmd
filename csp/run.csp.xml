@@ -38,9 +38,8 @@ if '$$$ISERR(sc) {
 	zw @global
 	}
 else {
-	
-	d $System.OBJ.DisplayError(sc)
-	w !,..EscapeHTML($$$ERRORCODE(sc))
+	w ..EscapeHTML($System.Status.GetErrorText(sc))
+
 	}
 //k @global
 </server>
