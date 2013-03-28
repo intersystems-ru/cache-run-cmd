@@ -41,7 +41,7 @@
 
 	try {
 	// открываем устройство с выполнением командной строки и чтением ответа
-	open cmd:"QR" if '$test  $$$ThrowStatus($$$ERROR($$$GeneralError,"Не удалось выполнить команду "_cmd))
+	open cmd:"QR:K\CP866\" if '$test  $$$ThrowStatus($$$ERROR($$$GeneralError,"Не удалось выполнить команду "_cmd))
 	Set IO=$IO  // запоминаем текущее устройство
 	// вычитываем построчно результат команды пока не наступит конец файла и складываем его в глобал
 	for  { 
@@ -54,7 +54,7 @@
 	#dim e as %Exception.AbstractException
 	} Catch e {
 			set sc=e.AsStatus()
-			do e.Log()   // 
+			//do e.Log()   // 
 	}
 	// закрываем устройство 
 	close cmd

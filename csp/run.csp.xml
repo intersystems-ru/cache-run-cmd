@@ -42,7 +42,7 @@ else {
 	d $System.OBJ.DisplayError(sc)
 	w !,..EscapeHTML($$$ERRORCODE(sc))
 	}
-k @global
+//k @global
 </server>
 		</pre>
         </div><!--/span-->
