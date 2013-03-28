@@ -34,14 +34,20 @@ if cmd'="" s sc=##class(Server.Manage).RunCmd(cmd,global)
 		<pre>
 <server>
 if '$$$ISERR(sc) {
+	if cmd'="" {
 	w "результат команды "_cmd,!
 	zw @global
+	}
+	else
+	{
+		w "Допустимые команды: ver, dir, type"
+		}
 	}
 else {
 	w ..EscapeHTML($System.Status.GetErrorText(sc))
 
 	}
-//k @global
+k @global
 </server>
 		</pre>
         </div><!--/span-->

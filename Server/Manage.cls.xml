@@ -4,6 +4,10 @@
 <Super>%RegisteredObject</Super>
 <TimeCreated>62878,65398.283255</TimeCreated>
 
+<Parameter name="cmdlist">
+<Default>dir,type,ver</Default>
+</Parameter>
+
 <Method name="SafeCmd">
 <Description>
 убираем из командной строки многие команды
@@ -14,7 +18,7 @@
 <Implementation><![CDATA[
 	set cmd=$piece(cmd,"&&")  // оставляем одну команду
 	set cmd=$piece(cmd,"|")
-	for i="dir","type","ver","cd" set safe(i)=""  // список разрешенных команд
+	for i=1:1:$length(..#cmdlist,",") set safe($p(..#cmdlist,",",i))=""  // список разрешенных команд
 	if '$data(safe($piece(cmd," "))) set cmd=""   
 	quit cmd
 ]]></Implementation>
