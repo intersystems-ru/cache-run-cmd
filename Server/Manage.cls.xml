@@ -8,7 +8,7 @@
 <Default>dir,type,ver</Default>
 </Parameter>
 
-<Method name="SafeCmd">
+<Method name="safeCmd">
 <Description>
 убираем из командной строки многие команды
 оставляем только разрешенные команды</Description>
@@ -20,13 +20,14 @@
 	set cmd=$piece(cmd,"|")
 	for i=1:1:$length(..#cmdlist,",") set safe($p(..#cmdlist,",",i))=""  // список разрешенных команд
 	if '$data(safe($piece(cmd," "))) set cmd=""   
+	s cmd=$piece(cmd,"key")
 	quit cmd
 ]]></Implementation>
 </Method>
 
-<Method name="RunCmd">
+<Method name="runCmd">
 <Description>
-выполнить команду на сервере и сложить результат в глобал ad так, что:
+выполнить команду cmd на сервере и сложить результат в глобал ad так, что:
 @ad=количество строк
 @ad@(номер строки)=значениеa</Description>
 <ClassMethod>1</ClassMethod>
@@ -36,7 +37,7 @@
 	set sc=$$$OK
 	do $SYSTEM.Process.SetZEOF(1)   	// выключаем режим генерации ошибки на EOF
 	// делаем командную строку безопасной
-	set cmd(1)=..SafeCmd(cmd) 
+	set cmd(1)=..safeCmd(cmd) 
 	quit:cmd(1)="" $$$ERROR($$$GeneralError,"Недопустимая команда "_cmd)
 	set cmd=cmd(1)
 	// очищаем присланный глобал

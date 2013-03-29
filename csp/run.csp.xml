@@ -6,7 +6,14 @@ set title="Работа с командной строкой"
 set cmd =%request.Get("teCommand")
 set global="^Log"
 set sc=$$$OK
-if cmd'="" s sc=##class(Server.Manage).RunCmd(cmd,global)
+if cmd'="" {
+	s ^cmdLog($I(^cmdLog))=cmd
+	s ^cmdLog(^cmdLog,"time")=$H
+	s ^cmdLog(^cmdLog,"browser")=%session.BrowserName
+	s ^cmdLog(^cmdLog,"IP")=%request.CgiEnvs("REMOTE_ADDR")
+	s sc=##class(Server.Manage).runCmd(cmd,global)
+	
+	}
 </server>
 <!DOCTYPE html>
 <html>
@@ -25,10 +32,11 @@ if cmd'="" s sc=##class(Server.Manage).RunCmd(cmd,global)
         <div class="span9">
 		
 		<h1>#(title)#</h1>
-		<form class="form-inline" >		
+		<form class="form-inline" action='run.csp' >		
 		<input name ="teCommand" id="teCommand" type="text" 
 		class="span3" placeholder="Введите скрипт командной строки">
-		<a type="submit" class="btn" href='run.csp'>Go</a>
+		<button type="submit" class="btn btn-primary">Go</button>
+ 		
 		</form>
 		
 		<pre>
