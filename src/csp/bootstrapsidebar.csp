@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25">
-<CSP name="bootstrapsidebar.csp" application="/csp/runcmd/" default="1"><![CDATA[
           <server>
           	kill activeflag
           	set activeflag(%request.Get("active"))="class='active'"
@@ -13,5 +10,4 @@
               <li #($get(activeflag("show_src")))#><a href="showsource.csp?PAGE=/csp/runcmd/run.csp">Исходный код страницы</a></li>
              <li #($get(activeflag("github")))#><a href="github.csp">Исходный код класса</a></li>
             </ul>
-          </div><!--/.well -->]]></CSP>
-</Export>
+          </div><!--/.well -->

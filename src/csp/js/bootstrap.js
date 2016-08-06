@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25">
-<CSP name="js/bootstrap.js" application="/csp/runcmd/" default="1"><![CDATA[
 /* ===================================================
  * bootstrap-transition.js v2.2.2
  * http://twitter.github.com/bootstrap/javascript.html#transitions
@@ -2159,5 +2156,4 @@
   })
 
 
-}(window.jQuery);]]></CSP>
-</Export>
+}(window.jQuery);

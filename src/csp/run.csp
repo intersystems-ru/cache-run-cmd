@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25">
-<CSP name="run.csp" application="/csp/runcmd/" default="1"><![CDATA[
 <server>
 set title="Работа с командной строкой"
 set cmd =%request.Get("teCommand")
@@ -69,5 +66,3 @@ k @global
 </body>
 
 </html>
-]]></CSP>
-</Export>

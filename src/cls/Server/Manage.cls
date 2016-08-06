@@ -1,39 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25">
-<Class name="Server.Manage">
-<Super>%RegisteredObject</Super>
-<TimeCreated>62878,65398.283255</TimeCreated>
+Class Server.Manage Extends %RegisteredObject
+{
 
-<Parameter name="cmdlist">
-<Default>dir,type,ver</Default>
-</Parameter>
+Parameter cmdlist = "dir,type,ver";
 
-<Method name="safeCmd">
-<Description>
-убираем из командной строки многие команды
-оставляем только разрешенные команды</Description>
-<ClassMethod>1</ClassMethod>
-<FormalSpec>cmd</FormalSpec>
-<ReturnType>%String</ReturnType>
-<Implementation><![CDATA[
+/// убираем из командной строки многие команды
+/// оставляем только разрешенные команды
+ClassMethod safeCmd(cmd) As %String
+{
 	set cmd=$piece(cmd,"&&")  // оставляем одну команду
 	set cmd=$piece(cmd,"|")
 	for i=1:1:$length(..#cmdlist,",") set safe($p(..#cmdlist,",",i))=""  // список разрешенных команд
 	if '$data(safe($piece(cmd," "))) set cmd=""   
 	s cmd=$piece(cmd,"key")
 	quit cmd
-]]></Implementation>
-</Method>
+}
 
-<Method name="runCmd">
-<Description>
-выполнить команду cmd на сервере и сложить результат в глобал ad так, что:
-@ad=количество строк
-@ad@(номер строки)=значениеa</Description>
-<ClassMethod>1</ClassMethod>
-<FormalSpec>cmd,ad:%String</FormalSpec>
-<ReturnType>%Status</ReturnType>
-<Implementation><![CDATA[
+/// выполнить команду cmd на сервере и сложить результат в глобал ad так, что:
+/// @ad=количество строк
+/// @ad@(номер строки)=значениеa
+ClassMethod runCmd(cmd, ad As %String) As %Status
+{
 	set sc=$$$OK
 	do $SYSTEM.Process.SetZEOF(1)   	// выключаем режим генерации ошибки на EOF
 	// делаем командную строку безопасной
@@ -67,7 +53,7 @@
 	// возвращаем текущее устройство
 	If $data(IO) Use IO
  quit sc
-]]></Implementation>
-</Method>
-</Class>
-</Export>
+}
+
+}
+

@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25">
-<CSP name="showsource.csp" application="/csp/runcmd/" default="1"><![CDATA[
 <!-- Copyright (c) 2001 InterSystems Inc. ALL RIGHTS RESERVED. -->
 <csp:class description="Views the source of a CSP page.">
 <server>
@@ -272,5 +269,3 @@ This page displays the original source file for a CSP page.
 
 </html>
 
-]]></CSP>
-</Export>

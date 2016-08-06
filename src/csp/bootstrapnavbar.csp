@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Export generator="Cache" version="25">
-<CSP name="bootstrapnavbar.csp" application="/csp/runcmd/" default="1"><![CDATA[
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -16,5 +13,3 @@
       </div>
     </div>
 
-]]></CSP>
-</Export>
